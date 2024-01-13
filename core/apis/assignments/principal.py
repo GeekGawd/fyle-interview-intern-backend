@@ -13,6 +13,7 @@ principal_assignments_resources = Blueprint('principal_assignments_resources', _
 def list_assignments(p):
     """Returns list of assignments"""
     submitted_and_graded_assignments = Assignment.filter(or_(Assignment.state == AssignmentStateEnum.SUBMITTED, Assignment.state == AssignmentStateEnum.GRADED)).all()
+    # submitted_and_graded_assignments = Assignment.filter().all()
     principals_assignments_dump = AssignmentSchema().dump(submitted_and_graded_assignments, many=True)
     return APIResponse.respond(data=principals_assignments_dump)
 

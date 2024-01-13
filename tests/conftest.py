@@ -1,6 +1,8 @@
 import pytest
 import json
 from tests import app
+from core.models.assignments import Assignment, AssignmentStateEnum
+from core import db
 
 
 @pytest.fixture
@@ -66,3 +68,35 @@ def h_principal():
     }
 
     return headers
+
+@pytest.fixture
+def submitted_assignment():
+    # Create a new assignment in the 'DRAFT' state
+    assignment = Assignment.get_by_id(4)
+    assignment.state = AssignmentStateEnum.SUBMITTED
+    assignment.grade = None
+    db.session.flush()
+
+    yield assignment
+
+    # Teardown (cleanup after the test runs)
+    assignment.state = AssignmentStateEnum.DRAFT
+    assignment.grade = None
+    db.session.flush()
+
+@pytest.fixture
+def drafted_assignment():
+    # Create a new assignment in the 'DRAFT' state
+    assignment = Assignment.get_by_id(2)
+    old_state = assignment.state
+    old_grade = assignment.grade
+    assignment.state = AssignmentStateEnum.DRAFT
+    assignment.grade = None
+    db.session.flush()
+
+    yield assignment
+
+    # Teardown (cleanup after the test runs)
+    assignment.state = old_state
+    assignment.grade = old_grade
+    db.session.flush()

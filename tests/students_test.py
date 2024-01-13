@@ -1,3 +1,6 @@
+import pytest
+from core import db
+
 def test_get_assignments_student_1(client, h_student_1):
     response = client.get(
         '/student/assignments',
@@ -39,6 +42,15 @@ def test_post_assignment_null_content(client, h_student_1):
     assert response.status_code == 400
 
 
+@pytest.fixture
+def transactional_session(request):
+    """
+    Fixture to start a transaction before a test and rollback after the test.
+    """
+    db.session.begin(subtransactions=True)
+    request.addfinalizer(db.session.rollback)
+
+@pytest.mark.usefixtures("transactional_session")
 def test_post_assignment_student_1(client, h_student_1):
     content = 'ABCD TESTPOST'
 
@@ -57,7 +69,7 @@ def test_post_assignment_student_1(client, h_student_1):
     assert data['teacher_id'] is None
 
 
-def test_submit_assignment_student_1(client, h_student_1):
+def test_submit_assignment_student_1(client, h_student_1, drafted_assignment):
     response = client.post(
         '/student/assignments/submit',
         headers=h_student_1,

@@ -1,3 +1,6 @@
+import pytest
+from core import db
+
 def test_get_assignments_teacher_1(client, h_teacher_1):
     response = client.get(
         '/teacher/assignments',
@@ -97,6 +100,52 @@ def test_grade_assignment_draft_assignment(client, h_teacher_1):
     )
 
     assert response.status_code == 400
+    data = response.json
+
+    assert data['error'] == 'FyleError'
+
+@pytest.fixture
+def transactional_session(request):
+    """
+    Fixture to start a transaction before a test and rollback after the test.
+    """
+    db.session.begin(subtransactions=True)
+    request.addfinalizer(db.session.rollback)
+
+@pytest.mark.usefixtures("transactional_session")
+def test_grade_assignment_submitted_assignment(client, h_teacher_1):
+    """
+    success case: a submitted assignment can be graded
+    """
+    response = client.post(
+        '/teacher/assignments/grade',
+        headers=h_teacher_1,
+        json={
+            "id": 1,
+            "grade": "A"
+        }
+    )
+
+    assert response.status_code == 200
+    data = response.json
+
+    assert data['data']['state'] == 'GRADED'
+    assert data['data']['grade'] == 'A'
+
+def test_grade_assignment_student_error(client, h_student_1):
+    """
+    failure case: a student cannot grade an assignment
+    """
+    response = client.post(
+        '/teacher/assignments/grade',
+        headers=h_student_1,
+        json={
+            "id": 1,
+            "grade": "A"
+        }
+    )
+
+    assert response.status_code == 403
     data = response.json
 
     assert data['error'] == 'FyleError'

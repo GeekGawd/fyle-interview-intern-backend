@@ -1,7 +1,7 @@
 # Fyle Backend Challenge
 <!-- Image center -->
 <p align="center">
-  <img style="width: 50%; height: 50%;" src="images/fyle.png" />
+  <img style="width: 250px; height: 250px;" src="images/fyle.png" />
 </p>
 
 
@@ -82,7 +82,7 @@ pytest -vvv -s tests/
 
 # About Me:
 <p align="center">
-  <img src="images/profile_picture.jpg" />
+  <img style="width: 250px; height: 300px;" src="images/profile_picture.jpg" />
 </p>
 
 

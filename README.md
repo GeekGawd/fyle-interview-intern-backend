@@ -1,7 +1,7 @@
 # Fyle Backend Challenge
 <!-- Image center -->
 <p align="center">
-  <img src="images/fyle.png" />
+  <img style="width: 50%; height: 50%;" src="images/fyle.png" />
 </p>
 
 

@@ -1,4 +1,10 @@
 # Fyle Backend Challenge
+<!-- Image center -->
+<p align="center">
+  <img src="images/fyle.png" />
+</p>
+
+
 Hello everyone at Fyle, 
 
 I really love the the new format of the assignment, the requirements were clearly stated, even though I had little to no prior experience with Flask, as I had worked extensively with Django and FastAPI, the repo was easy to work on.
@@ -72,3 +78,42 @@ pytest -vvv -s tests/
 # pytest --cov
 # open htmlcov/index.html
 ```
+
+
+# About Me:
+<p align="center">
+  <img src="images/profile_picture.jpg" />
+</p>
+
+
+I am Suyash Singh, a final year student. I am well versed with Python, Django, Redis, Apache Kafka, Celery and Websockets.
+
+A Little bit about me: I have strong problem solving skills and regularly practice on major coding platforms. I have Three Internship Experiences, Open Source Contributions and some notable hackathon wins are KAVACH-2023 Winner, 2x times NIT Jalandhar Hackmol Winner, Smart India Hackathon Winner, Bajaj HackRx 4.0 Runner Up, which showcase my skills as a great backend developer.
+
+My Work: Silive Website: The Software Development Center of the
+College. Link: www.silive.in Tech Stack: Python, Django, HTML, CSS
+
+Cryptocurrency Investigation Tool: Kavach Cybersecurity 2023 Hackathon
+Winning project. Tech Stack: React, Django, Python
+https://github.com/I-polusta/kavach2023
+
+More-Fit: https://github.com/GeekGawd/morefit-ml My machine learning
+work done for the winning idea in Smart India Hackathon. Tech Stack:
+Android(Kotlin), Django, Tensorflow Lite
+
+Log-Tracer Application: This uses Golang, Grafana and InfluxDB. This
+is a personal project to store the api status and timestamps and error
+which can be easily visualised in the grafana dashboard.
+https://github.com/GeekGawd/logtracer
+
+Cryptocurrency Tracking Application:
+https://github.com/GeekGawd/cryptocurrency-tracker-application This
+project sets alerts to the cryptocurrency and sends it using email. I
+used cron jobs, websockets and kafka to make this system.
+
+I have also contributed to Wagtail and other open source
+repositiories, which can be found on my github:
+https://github.com/GeekGawd
+
+Resume:
+https://drive.google.com/file/d/1w2Su8hzLM5_9KVm14GvLbt9sVpNjYNBt/view?usp=sharing

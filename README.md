@@ -1,30 +1,48 @@
 # Fyle Backend Challenge
+Hello everyone at Fyle, 
 
-## Who is this for?
+I really love the the new format of the assignment, the requirements were clearly stated, even though I had little to no prior experience with Flask, as I had worked extensively with Django and FastAPI, the repo was easy to work on.
 
-This challenge is meant for candidates who wish to intern at Fyle and work with our engineering team. You should be able to commit to at least 6 months of dedicated time for internship.
+- [x] Added Missing Missing APIs - [Postman Documentation](https://documenter.getpostman.com/view/21779136/2s9YsNdqVj)
 
-## Why work at Fyle?
+![Tests with Coverage](images/tests-coverage.png)
+- [x] Automated Tests are Working 
+- [x] Improved the Test Coverage to 95% and added some additional tests for grading API
 
-Fyle is a fast-growing Expense Management SaaS product. We are ~40 strong engineering team at the moment. 
+![Dockersised the application](images/docker.png)
+- [x] Dockerised the Application with Dockerfile and docker-compose.yml
 
-We are an extremely transparent organization. Check out our [careers page](https://careers.fylehq.com) that will give you a glimpse of what it is like to work at Fyle. Also, check out our Glassdoor reviews [here](https://www.glassdoor.co.in/Reviews/Fyle-Reviews-E1723235.htm). You can read stories from our teammates [here](https://stories.fylehq.com).
+Here are the following things I noticed about repo and could be improved:
 
+### Problem 1
+Problem: There is no check in the header to check if the id for principal, teacher or student exists in the database or not.
 
-## Challenge outline
+Solution: Query the database whether it exists or not
 
-This challenge involves writing a backend service for a classroom. The challenge is described in detail [here](./Application.md)
+### Problem 2
+Problem: Exposing sequential id in the headers is big security threat and can be easily guessed by the user
 
+Solution:
+- Apply Rate-Limiting to the APIs
+- Keep auto_increment ids as primary key, implement uuid to implement a external_id, this will be used to reference the objects in the APIs
 
-## What happens next?
+### Problem 3
+Problem: No separate test database, tests directly run on production server.
 
-You will hear back within 48 hours from us via email. 
+Solution: Create a separate test database, create fake data and delete the database after tests are run.
 
+### Problem 4
+Problem: Ids hard encoded in database
+
+Solution: Make use of pytest fixtures or query from database for ids that fullfill a certain condition like get assignments with state "GRADED" and etc.
 
 ## Installation
 
-1. Fork this repository to your github account
-2. Clone the forked repository and proceed with steps mentioned below
+### Run using Docker
+To run the docker on local machine simply run the following command:
+```
+docker-compose up -d
+```
 
 ### Install requirements
 
